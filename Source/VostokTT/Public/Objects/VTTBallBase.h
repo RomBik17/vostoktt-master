@@ -15,7 +15,7 @@ class VOSTOKTT_API AVTTBallBase : public AActor
 	GENERATED_BODY()
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Meta = (AllowPrivateAccess = "true"))
-		USphereComponent* CollisionSphere = nullptr;
+	USphereComponent* CollisionSphere = nullptr;
 
 public:
 	// Sets default values for this actor's properties

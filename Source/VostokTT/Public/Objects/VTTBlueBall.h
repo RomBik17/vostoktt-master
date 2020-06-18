@@ -13,5 +13,19 @@ UCLASS()
 class VOSTOKTT_API AVTTBlueBall : public AVTTBallBase
 {
 	GENERATED_BODY()
-	
+
+public:
+
+	virtual void Tick(float DeltaTime) override;
+
+	void movement();
+
+	void resetChanging();
+
+private:
+
+	bool canChange = true;
+	FTimerHandle MoveChangeTimerHandle;
+	float angle = 0;
+	float time = 0;
 };
