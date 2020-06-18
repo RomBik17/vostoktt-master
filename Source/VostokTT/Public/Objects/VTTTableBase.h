@@ -2,6 +2,11 @@
 
 #pragma once
 
+#include "Objects/VTTBallBase.h"
+#include "Objects/VTTRedBall.h"
+#include "Objects/VTTYellowBall.h"
+#include "Objects/VTTHamelion.h"
+#include "Objects/VTTBlueBall.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "VTTTableBase.generated.h"
@@ -23,7 +28,14 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	int SpawnFrequency;
-	//AvailableToSpawnBalls - Массив блюпринтовых сабклассов AVTTBallBase.
-	int MaxSpawnedBalls;
+	int SpawnFrequency = 1;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AVTTBallBase> AvailableToSpawnBalls;
+
+	UFUNCTION(BlueprintCallable)
+	void Spawn();
+
+	int i = 0;
+	int MaxSpawnedBalls = 5;
 };
