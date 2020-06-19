@@ -22,6 +22,6 @@ protected:
 
 	virtual void ProcessBallCollision( FVector const& OtherBallLocation, FVector const& OtherBallVelocity, float OtherBallMass ) override;
 
-	virtual bool canDestroy() override;
+	virtual void canDestroy() override;
 
 };

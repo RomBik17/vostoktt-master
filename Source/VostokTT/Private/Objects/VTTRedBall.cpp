@@ -18,11 +18,10 @@ void AVTTRedBall::ProcessBallCollision(FVector const& CollisionImpulseAxis, FVec
 	TemporaryCollisionsWithBalls++;
 }
 
-bool AVTTRedBall::canDestroy()
+void AVTTRedBall::canDestroy()
 {
 	if (TemporaryCollisionsWithBorders > MaxCollisionsWithBorders ||
 		TemporaryCollisionsWithBalls > MaxCollisionsWithBalls ||
-		BallMass > MaxMass) return true;
-	return false;
+		BallMass > MaxMass) Destroy();
 }
 

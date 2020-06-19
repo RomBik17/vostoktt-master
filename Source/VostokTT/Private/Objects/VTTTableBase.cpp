@@ -5,6 +5,7 @@
 #include "Engine/World.h"
 #include "TimerManager.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include <time.h>
 
 // Sets default values
@@ -65,25 +66,31 @@ void AVTTTableBase::Tick(float DeltaTime)
 
 void AVTTTableBase::Spawn()
 {
-	if (canSpawn && ballCount < MaxSpawnedBalls)
+	if (canSpawn)
 	{
-		canSpawn = false;
-		srand(time(0));
-		int i = rand() % AvailableToSpawnBalls.Num();
-		UWorld* world = GetWorld();
-		if (world)
+		TSubclassOf<AVTTBallBase> ClassToFind;
+		TArray<AActor*> FoundActors;
+		UGameplayStatics::GetAllActorsOfClass(GetWorld(), ClassToFind, FoundActors);
+		ballCount = FoundActors.Num();
+		if (ballCount < MaxSpawnedBalls)
 		{
-			FActorSpawnParameters spawnParams;
-			spawnParams.Owner = this;
+			canSpawn = false;
+			srand(time(0));
+			int i = rand() % AvailableToSpawnBalls.Num();
+			UWorld* world = GetWorld();
+			if (world)
+			{
+				FActorSpawnParameters spawnParams;
+				spawnParams.Owner = this;
 
-			FRotator rotator;
-			FVector spawnLocation = { 0, 0, 170 };
+				FRotator rotator;
+				FVector spawnLocation = { 0, 0, 170 };
 
-			world->SpawnActor<AVTTBallBase>(AvailableToSpawnBalls[i], spawnLocation, rotator, spawnParams);
-			ballCount++;
+				world->SpawnActor<AVTTBallBase>(AvailableToSpawnBalls[i], spawnLocation, rotator, spawnParams);
+			}
+
+			GetWorld()->GetTimerManager().SetTimer(SpawnTimerHandle, this, &AVTTTableBase::resetSpawn, SpawnFrequency, false);
 		}
-
-		GetWorld()->GetTimerManager().SetTimer(SpawnTimerHandle, this, &AVTTTableBase::resetSpawn, SpawnFrequency, false);
 	}
 }
 

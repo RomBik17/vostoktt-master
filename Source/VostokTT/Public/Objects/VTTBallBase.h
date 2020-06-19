@@ -30,7 +30,7 @@ protected:
 	virtual void				ProcessBallMovement(float const DeltaTime);
 	virtual void				DoCollisionTest(float const DeltaTime);
 
-	virtual bool				canDestroy();
+	virtual void				canDestroy();
 public:
 	// Called every frame
 	virtual void				Tick(float DeltaTime) override;
@@ -46,8 +46,8 @@ protected:
 	FVector CurrentVelocity = FVector::ZeroVector;
 	bool	AlreadyCollidedWithBall = false;
 
-	int MaxCollisionsWithBorders = 10;
-	int MaxCollisionsWithBalls = 10;
+	int MaxCollisionsWithBorders = 5;
+	int MaxCollisionsWithBalls = 5;
 
 	int TemporaryCollisionsWithBorders;
 	int TemporaryCollisionsWithBalls;
