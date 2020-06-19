@@ -29,6 +29,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere)
 	float SpawnFrequency = 1;
 
 	UPROPERTY(EditAnywhere)
@@ -37,7 +38,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Spawn();
 
+	UPROPERTY(EditAnywhere)
 	int MaxSpawnedBalls = 5;
+
 	int ballCount = 0;
 
 	bool canSpawn = true;

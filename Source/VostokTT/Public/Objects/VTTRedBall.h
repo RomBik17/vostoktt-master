@@ -16,6 +16,7 @@ class VOSTOKTT_API AVTTRedBall : public AVTTBallBase
 	
 public:
 
+	UPROPERTY(EditAnywhere)
 	int MaxMass = 5;
 
 protected:

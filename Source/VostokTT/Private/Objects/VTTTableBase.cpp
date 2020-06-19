@@ -84,7 +84,8 @@ void AVTTTableBase::Spawn()
 				spawnParams.Owner = this;
 
 				FRotator rotator;
-				FVector spawnLocation = { 0, 0, 170 };
+				FVector spawnLocation = GetActorLocation();
+				spawnLocation.Z += 170;
 
 				world->SpawnActor<AVTTBallBase>(AvailableToSpawnBalls[i], spawnLocation, rotator, spawnParams);
 			}
