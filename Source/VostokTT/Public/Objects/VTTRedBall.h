@@ -16,10 +16,12 @@ class VOSTOKTT_API AVTTRedBall : public AVTTBallBase
 	
 public:
 
-	int MaxMass = 20;
+	int MaxMass = 5;
 
 protected:
 
 	virtual void ProcessBallCollision( FVector const& OtherBallLocation, FVector const& OtherBallVelocity, float OtherBallMass ) override;
+
+	virtual bool canDestroy() override;
 
 };

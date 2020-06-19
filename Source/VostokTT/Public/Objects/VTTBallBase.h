@@ -29,6 +29,8 @@ protected:
 	virtual void				ProcessBallCollision(FVector const& OtherBallLocation, FVector const& OtherBallVelocity, float OtherBallMass);
 	virtual void				ProcessBallMovement(float const DeltaTime);
 	virtual void				DoCollisionTest(float const DeltaTime);
+
+	virtual bool				canDestroy();
 public:
 	// Called every frame
 	virtual void				Tick(float DeltaTime) override;

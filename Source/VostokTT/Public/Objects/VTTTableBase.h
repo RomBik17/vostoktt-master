@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Containers/Array.h"
 #include "Objects/VTTBallBase.h"
 #include "Objects/VTTRedBall.h"
 #include "Objects/VTTYellowBall.h"
@@ -28,14 +29,19 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	int SpawnFrequency = 1;
+	float SpawnFrequency = 1;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<AVTTBallBase> AvailableToSpawnBalls;
+	TArray<TSubclassOf<AVTTBallBase>> AvailableToSpawnBalls;
 
 	UFUNCTION(BlueprintCallable)
 	void Spawn();
 
-	int i = 0;
 	int MaxSpawnedBalls = 5;
+	int ballCount = 0;
+
+	bool canSpawn = true;
+	FTimerHandle SpawnTimerHandle;
+
+	void resetSpawn();
 };

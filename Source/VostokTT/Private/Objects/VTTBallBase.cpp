@@ -112,6 +112,12 @@ void AVTTBallBase::DoCollisionTest(float const DeltaTime)
 	AlreadyCollidedWithBall = false;	
 }
 
+bool AVTTBallBase::canDestroy()
+{
+	if (TemporaryCollisionsWithBorders > MaxCollisionsWithBorders || TemporaryCollisionsWithBalls > MaxCollisionsWithBalls) return true;
+	return false;
+}
+
 // Called every frame
 void AVTTBallBase::Tick(float DeltaTime)
 {
