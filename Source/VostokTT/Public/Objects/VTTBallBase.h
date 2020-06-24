@@ -36,12 +36,12 @@ public:
 	virtual void				Tick(float DeltaTime) override;
 
 	FORCEINLINE float			GetBallMass() const { return BallMass; }
-	FORCEINLINE FVector const& GetBallVelocity() const { return CurrentVelocity; }
+	FORCEINLINE FVector const&  GetBallVelocity() const { return CurrentVelocity; }
 	FORCEINLINE void			SetBallVelocity(FVector const& NewVelocity) { CurrentVelocity = NewVelocity; AlreadyCollidedWithBall = true; }
 
 protected:
 	UPROPERTY(EditDefaultsOnly)
-		float	BallMass = 1.f;
+	float	BallMass = 1.f;
 
 	FVector CurrentVelocity = FVector::ZeroVector;
 	bool	AlreadyCollidedWithBall = false;
